@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-
+import { api_key } from './api_key';
 function App() {
   const [recipes, setRecipes] = useState([]);
 
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': 'ab83417137msh9e6c2eae529dabbp1bac36jsne2f4ef37b89a',
+      'X-RapidAPI-Key': api_key,
       'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
     }
   };
