@@ -41,8 +41,8 @@ function App() {
          <div>
           <Navigation/>
           <Routes>
-            <Route path='/home' element={<Home recipes={recipes}/>} />
-            <Route path='/card' element={<RecipeCard recipes={recipes}/>} />
+            <Route path='/' element={<Home recipes={recipes}/>} /> took out the /home
+            {/* <Route path='/card' element={<RecipeCard recipes={recipes}/>} /> */}
           </Routes>
          </div>
         </BrowserRouter>

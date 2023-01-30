@@ -18,16 +18,18 @@ function RecipeCard({recipes, url}) {
         fetch('https://tasty.p.rapidapi.com/recipes/list', options)
           .then((res) => res.json())
           .then((data) => {
-            setSingleRecipe(data);
+            console.log("data is",data)
+            setSingleRecipe(data.results);
           })
           .catch((error) => {
             console.error(error);
           });
       }, [url]);
-  
+  console.log(singleRecipe)
 return (
 
     <>
+
     <h1>recipeCard Page</h1>
     <div className='cards'> 
 
@@ -54,7 +56,3 @@ return (
 };
 
 export { RecipeCard };
-{/* <div className='card' key={idx}> 
-           
-              <img style={{width: "200px", height: "300px"}} className='card-image' src={singleRecipe.thumbnail_url} alt={singleRecipe.name} />  
-              </div>  */}
