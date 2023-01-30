@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { api_key } from './api_key';
+import { Home } from './pages/Home';
+import { RecipeCard } from './components/RecipeCard';
+import { Navigation } from './components/Navigation';
+
 function App() {
   const [recipes, setRecipes] = useState([]);
 
@@ -31,17 +36,17 @@ function App() {
   
 
   return (
-    <div className='cards'> 
-    {recipes.map((singleRecipe, idx) => {
-      return(
-         <> 
-       <div className='card' key={idx}> 
-        <img style={{width: "200px", height: "300px"}} className='card-image' src={singleRecipe.thumbnail_url} alt={singleRecipe.name} />  
-        </div> 
-        </>
-  ) } )} 
-      
-   </div>
+    
+         <BrowserRouter> 
+         <div>
+          <Navigation/>
+          <Routes>
+            <Route path='/home' element={<Home recipes={recipes}/>} />
+            <Route path='/card' element={<RecipeCard recipes={recipes}/>} />
+          </Routes>
+         </div>
+        </BrowserRouter>
+  
   );
 }
 
