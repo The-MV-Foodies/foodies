@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { api_key } from '../api_key';
 
-function RecipeCard({recipes, url}) {
+function RecipeCard({recipes, url, id}) {
     const [singleRecipe, setSingleRecipe] = useState(null);
 
     const options = {
@@ -15,16 +15,16 @@ function RecipeCard({recipes, url}) {
       };
 
     useEffect(() => {
-        fetch('https://tasty.p.rapidapi.com/recipes/list', options)
+        fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${id}`, options)
           .then((res) => res.json())
           .then((data) => {
             console.log("data is",data)
-            setSingleRecipe(data.results);
+            setSingleRecipe(data);
           })
           .catch((error) => {
             console.error(error);
           });
-      }, [url]);
+      }, [id]);
   console.log(singleRecipe)
 return (
 
@@ -44,7 +44,7 @@ return (
                 />
                 <Card.ImgOverlay>
                 <Card.Title>
-                <Link to={`/${singleRecipe.name}`}>{singleRecipe.name}</Link>
+                <Link to={`/${singleRecipe.id}`}>{singleRecipe.name}</Link>
                 </Card.Title>
                 </Card.ImgOverlay>
             </Card>        

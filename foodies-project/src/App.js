@@ -4,6 +4,7 @@ import { api_key } from './api_key';
 import { Home } from './pages/Home';
 import { RecipeCard } from './components/RecipeCard';
 import { Navigation } from './components/Navigation';
+import { RecipeDetails } from './pages/RecipeDetails';
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -41,7 +42,8 @@ function App() {
          <div>
           <Navigation/>
           <Routes>
-            <Route path='/' element={<Home recipes={recipes}/>} /> took out the /home
+            <Route path='/' element={<Home recipes={recipes}/>} /> 
+            <Route path='/:id' element={<RecipeDetails />} />
             {/* <Route path='/card' element={<RecipeCard recipes={recipes}/>} /> */}
           </Routes>
          </div>

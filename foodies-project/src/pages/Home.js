@@ -39,7 +39,7 @@ function Home({ recipes, url }) {
           <Row className='g-4'>
           {filteredRecipe.map((singleRecipe) => (
             <Col key={singleRecipe.name}>
-              <RecipeCard url={singleRecipe.thumbnail_url} name={singleRecipe.name} recipes={recipes} />
+              <RecipeCard url={singleRecipe.thumbnail_url} name={singleRecipe.name} recipes={recipes} id={singleRecipe.id}/>
             </Col>
           ))}
           </Row>
