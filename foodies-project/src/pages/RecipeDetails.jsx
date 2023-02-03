@@ -69,7 +69,7 @@ useEffect(() => {
           })}
         </ul>
         <Button variant="danger" type='submit'
-        // onClick={() => addToShoppingList(ingredientList)}
+        onClick={() => addToShoppingList(ingredientList)}
         >Add to shopping list</Button>
             </Form>
         <p>Instructions:</p>
