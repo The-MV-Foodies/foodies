@@ -3,12 +3,14 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { api_key } from '../api_key';
 import { ShoppingListContext } from '../ShoppingListProvider';
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, FormCheck } from "react-bootstrap"
+
 
 function RecipeDetails() {
   const params = useParams();
   const [recipe, setRecipe] = useState(null);
   const [checked, setChecked] = useState(false)
+  const [ingredientList, setIngredientList] = useState([])
 
    const { shoppingList, addToShoppingList } = useContext(ShoppingListContext)
 
@@ -34,6 +36,16 @@ useEffect(() => {
     return <>loading...</>;
   }
 
+  const handleSubmit= (e) => {  
+    e.preventDefault();  
+    setChecked(!checked)
+  } 
+  function handleChange(e) {  
+    setChecked(!checked)
+    const updatedList = [...ingredientList, e.target.name]
+    setIngredientList(updatedList)
+    addToShoppingList(ingredientList)
+}  
 
   return (
     <div>
@@ -42,25 +54,24 @@ useEffect(() => {
         <h4>Servings: {recipe.num_servings}</h4>
         <h4>Cook Time: {recipe.total_time_minutes} minutes</h4>
         <p>Ingredients:</p>
+         <Form onSubmit={()=>handleSubmit()}>
         <ul>
           {recipe.sections.map((section) =>{ 
             return<>
             {section.components.map((component)=>(
-                // <li></li
-                <Form>
                     <Form.Check 
                         value={checked}
-                        onChange={()=> setChecked(!checked)}
-                        label={component.raw_text} />
-                     <Button variant="danger" onClick={() => addToShoppingList(component.raw_text)}>Add to shopping list</Button>
-                 </Form>      
+                        onChange={(e)=> handleChange(e)}
+                        label={component.raw_text}
+                        name={component.raw_text} />  
             )) }
-             
-           
-             
             </>
           })}
         </ul>
+        <Button variant="danger" type='submit'
+        // onClick={() => addToShoppingList(ingredientList)}
+        >Add to shopping list</Button>
+            </Form>
         <p>Instructions:</p>
         <ul>
           {recipe.instructions.map((instruction) => (
