@@ -6,7 +6,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { RecipeCard } from "../components/RecipeCard";
 
-function Home({ recipes, url }) {
+function Home({ recipes }) {
   const [filteredRecipe, setFilteredRecipe] = useState([]);
   const [search, setSearch] = useState('');
 
@@ -16,12 +16,10 @@ function Home({ recipes, url }) {
         singleRecipe.name.toLowerCase().includes(search.toLowerCase())
       )
     );
-  }, [search, recipes]);
-
+  }, [recipes, search]);
     return (
       <>
       <h1>homepage</h1>
- 
         <Container>
         <Row className='mb-4'>
           <Col sm='8' md='6' className='mx-auto'>
@@ -37,17 +35,26 @@ function Home({ recipes, url }) {
           </Col>
         </Row>
           <Row className='g-4'>
-          {filteredRecipe.map((singleRecipe) => (
+
+            {filteredRecipe.map((singleRecipe) => (
+              <Col key={singleRecipe.name}>
+              <RecipeCard recipe={singleRecipe} url={singleRecipe.thumbnail_url} name={singleRecipe.name} id={singleRecipe.id} />
+              </Col>
+            ))}
+
+            {/* {filteredRecipe.map((singleRecipe) => (
+              <RecipeCard url={singleRecipe.thumbnail_url} name={singleRecipe.name} recipes={recipes} id={singleRecipe.id}/>
+            ))} */}
+          {/* {filteredRecipe.map((singleRecipe) => (
             <Col key={singleRecipe.name}>
               <RecipeCard url={singleRecipe.thumbnail_url} name={singleRecipe.name} recipes={recipes} id={singleRecipe.id}/>
             </Col>
-          ))}
+          ))} */}
           </Row>
           </Container>
-       
+
           </>
         
-     
     );
   }
     
