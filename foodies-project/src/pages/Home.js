@@ -19,7 +19,7 @@ function Home({ recipes }) {
   }, [recipes, search]);
     return (
       <>
-      <h1>homepage</h1>
+      <h1 style={{textAlign: 'center'}}>Foodies</h1>
         <Container>
         <Row className='mb-4'>
           <Col sm='8' md='6' className='mx-auto'>

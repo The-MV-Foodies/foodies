@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { api_key } from '../api_key';
@@ -94,21 +93,20 @@ useEffect(() => {
         </Row>
       </Card>
     </Container>
-        <h4>Servings: {recipe.num_servings}</h4>
-        <h4>Cook Time: {recipe.total_time_minutes} minutes</h4>
-        <p>Ingredients:</p>
-        <ul>
-          {recipe.sections.map((section) =>{ 
-            return<>
-            {section.components.map((component)=>(
-                <>
-                <Button onClick={()=>addToShoppingList(component.raw_text)}>+</Button><p>{component.raw_text}</p>
-                </> 
-            )) }
-            </>
-          })}
-        </ul>
-        <table>
+    <Container>
+      <Row>
+        <Col  sm={6} md={8} style={{flex: 1.5}}>
+          <h4>Servings: {recipe.num_servings}</h4>
+          <h4>Cook Time: {recipe.total_time_minutes} minutes</h4>
+          <p>Instructions:</p>
+          <ul>
+            {recipe.instructions.map((instruction) => (
+              <li key={instruction.display_text}>
+                <span>{instruction.display_text}</span>
+              </li>
+            ))}
+          </ul>
+          <table>
             <thead>
                 <tr>
                     <th>Nutrition Facts</th>
@@ -137,6 +135,26 @@ useEffect(() => {
                 </tr>
             </tbody>
         </table>
+        </Col>
+        <Col sm={6} md={16} style={{flex: 1}}>
+        <p>Ingredients:</p>
+          <ul>
+            {recipe.sections.map((section) =>{ 
+              return<>
+              {section.components.map((component)=>(
+                  <>
+                  <Button onClick={()=>addToShoppingList(component.raw_text)}>+</Button><p>{component.raw_text}</p>
+                  </> 
+              )) }
+              </>
+            })}
+          </ul>
+        </Col>
+      </Row>
+    </Container>
+        
+
+        
     </div>
   ); 
 }
