@@ -20,9 +20,9 @@ function App() {
 
   async function fetchItems(){
 		try {
-			const response = await fetch('https://tasty.p.rapidapi.com/recipes/list?from=0&size=20&tags=under_30_minutes', options)
+			const response = await fetch('https://tasty.p.rapidapi.com/recipes/list?from=0&size=25&tags=under_30_minutes', options)
 			const recipesData = await response.json();
-      console.log(recipesData.results)
+      console.log("results: ",recipesData.results)
 			
 			setRecipes(recipesData.results);
 		} catch (err) {
@@ -33,7 +33,7 @@ function App() {
 	useEffect(() => {
 		fetchItems()
 	}, []);
-   
+  
 
   
 

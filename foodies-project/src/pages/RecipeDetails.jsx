@@ -1,10 +1,11 @@
-
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { api_key } from '../api_key';
 import { ShoppingListContext } from '../ShoppingListProvider';
-import { Form, Button, FormCheck } from "react-bootstrap"
-
+import { Form, Button, FormCheck, Card } from "react-bootstrap"
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function RecipeDetails() {
   const params = useParams();
@@ -12,7 +13,7 @@ function RecipeDetails() {
   const [checked, setChecked] = useState(false)
   const [ingredientList, setIngredientList] = useState([])
 
-   const { shoppingList, addToShoppingList } = useContext(ShoppingListContext)
+  const { shoppingList, addToShoppingList } = useContext(ShoppingListContext)
 
 console.log("in my shopping list: ",shoppingList)
   const options = {
@@ -24,6 +25,7 @@ console.log("in my shopping list: ",shoppingList)
 };
 
 useEffect(() => {
+  if(!params.id) return null;
     fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${params.id}`, options)
       .then((res) => res.json())
       .then((data) => {
@@ -40,6 +42,8 @@ useEffect(() => {
     e.preventDefault();  
     setChecked(!checked)
   } 
+
+  
   function handleChange(e) {  
     setChecked(!checked)
     const updatedList = [...ingredientList, e.target.name]
@@ -47,40 +51,62 @@ useEffect(() => {
     addToShoppingList(ingredientList)
 }  
 
+
   return (
     <div>
-        <h1>{recipe.name}</h1>
-        <h3>{recipe.description}</h3>
-        <h4>Servings: {recipe.num_servings}</h4>
-        <h4>Cook Time: {recipe.total_time_minutes} minutes</h4>
-        <p>Ingredients:</p>
-         <Form onSubmit={()=>handleSubmit()}>
-        <ul>
-          {recipe.sections.map((section) =>{ 
-            return<>
-            {section.components.map((component)=>(
-                    <Form.Check 
-                        value={checked}
-                        onChange={(e)=> handleChange(e)}
-                        label={component.raw_text}
-                        name={component.raw_text} />  
-            )) }
-            </>
-          })}
-        </ul>
-        <Button variant="danger" type='submit'
-        onClick={() => addToShoppingList(ingredientList)}
-        >Add to shopping list</Button>
-            </Form>
-        <p>Instructions:</p>
-        <ul>
-          {recipe.instructions.map((instruction) => (
-            <li key={instruction.display_text}>
-              <span>{instruction.display_text}</span>
-            </li>
-          ))}
-        </ul>
-        <table>
+    <Container style={{
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      'max-width': '100vw'
+    }}>
+      <Card style={{width: '100vw', height: '800px'}}>
+        <Row style={{ 
+          display: 'flex', 
+          flexDirection: 'row', 
+          justifyContent: 'space-around'
+        }}>
+          <Col sm={6} md={8} style={{flex: 1.3}}>
+            <Card.Body style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+              flexDirection: 'column'
+            }}>
+              <Card.Title style={{textAlign: 'center'}}><h1>{recipe.name}</h1></Card.Title>
+              <Card.Text style={{textAlign: 'center'}}>
+                {recipe.description}
+                {recipe.credits && recipe.credits.map(credit =>(
+                  <p> by: {credit.name}</p>
+                ))}
+              </Card.Text>
+            </Card.Body>
+          </Col>
+          <Col sm={6} md={16} style={{flex: 1}}>
+            <Card.Img 
+              variant="top" 
+              src={recipe.thumbnail_url}
+              style={{width: '100%', height: '800px'}} 
+            />
+          </Col>
+        </Row>
+      </Card>
+    </Container>
+    <Container>
+      <Row>
+        <Col  sm={6} md={8} style={{flex: 1.5}}>
+          <h4>Servings: {recipe.num_servings}</h4>
+          <h4>Cook Time: {recipe.total_time_minutes} minutes</h4>
+          <p>Instructions:</p>
+          <ul>
+            {recipe.instructions.map((instruction) => (
+              <li key={instruction.display_text}>
+                <span>{instruction.display_text}</span>
+              </li>
+            ))}
+          </ul>
+          <table>
             <thead>
                 <tr>
                     <th>Nutrition Facts</th>
@@ -109,6 +135,26 @@ useEffect(() => {
                 </tr>
             </tbody>
         </table>
+        </Col>
+        <Col sm={6} md={16} style={{flex: 1}}>
+        <p>Ingredients:</p>
+          <ul>
+            {recipe.sections.map((section) =>{ 
+              return<>
+              {section.components.map((component)=>(
+                  <>
+                  <Button onClick={()=>addToShoppingList(component.raw_text)}>+</Button><p>{component.raw_text}</p>
+                  </> 
+              )) }
+              </>
+            })}
+          </ul>
+        </Col>
+      </Row>
+    </Container>
+        
+
+        
     </div>
   ); 
 }
