@@ -39,18 +39,6 @@ useEffect(() => {
     return <>loading...</>;
   }
 
-  const handleSubmit= (e) => {  
-    e.preventDefault();  
-    setChecked(!checked)
-  } 
-
-  
-  function handleChange(e) {  
-    setChecked(!checked)
-    const updatedList = [...ingredientList, e.target.name]
-    setIngredientList(updatedList)
-    addToShoppingList(ingredientList)
-}  
 
   return (
     <div>
@@ -146,6 +134,7 @@ useEffect(() => {
                   <div style={{display:'flex', padding:'8px'}}>
                     <Button onClick={() => {
                       addToShoppingList(component.raw_text)
+                      localStorage.setItem("shoppingList", JSON.stringify(shoppingList))
                       setIsButtonClicked({...isButtonClicked, [component.raw_text]: !isButtonClicked[component.raw_text]})
                     }} style={isButtonClicked[component.raw_text] ? {backgroundColor: 'transparent', border:'none'} : {}}>
                     {isButtonClicked[component.raw_text] ? <span style={{color: 'green', fontSize:'24px'}}>&#x2713;</span> : '+'}
