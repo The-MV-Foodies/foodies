@@ -14,6 +14,7 @@ function RecipeDetails() {
   const [ingredientList, setIngredientList] = useState([])
 
   const { shoppingList, addToShoppingList } = useContext(ShoppingListContext)
+  const [isButtonClicked, setIsButtonClicked] = useState({});
 
 console.log("in my shopping list: ",shoppingList)
   const options = {
@@ -50,7 +51,6 @@ useEffect(() => {
     setIngredientList(updatedList)
     addToShoppingList(ingredientList)
 }  
-
 
   return (
     <div>
@@ -96,7 +96,7 @@ useEffect(() => {
     <Container>
       <Row>
         <Col  sm={6} md={8} style={{flex: 1.5}}>
-          <h4>Servings: {recipe.num_servings}</h4>
+          <h4 style={{paddingTop:'18px'}}>Servings: {recipe.num_servings}</h4>
           <h4>Cook Time: {recipe.total_time_minutes} minutes</h4>
           <p>Instructions:</p>
           <ul>
@@ -137,13 +137,21 @@ useEffect(() => {
         </table>
         </Col>
         <Col sm={6} md={16} style={{flex: 1}}>
-        <p>Ingredients:</p>
+        <p style={{padding:'18px'}}>Ingredients:</p>
           <ul>
             {recipe.sections.map((section) =>{ 
               return<>
               {section.components.map((component)=>(
                   <>
-                  <Button onClick={()=>addToShoppingList(component.raw_text)}>+</Button><p>{component.raw_text}</p>
+                  <div style={{display:'flex', padding:'8px'}}>
+                    <Button onClick={() => {
+                      addToShoppingList(component.raw_text)
+                      setIsButtonClicked({...isButtonClicked, [component.raw_text]: !isButtonClicked[component.raw_text]})
+                    }} style={isButtonClicked[component.raw_text] ? {backgroundColor: 'transparent', border:'none'} : {}}>
+                    {isButtonClicked[component.raw_text] ? <span style={{color: 'green', fontSize:'24px'}}>&#x2713;</span> : '+'}
+                    </Button>  
+                    <p style={{margin:'10px'}}>{component.raw_text}</p>
+                  </div>
                   </> 
               )) }
               </>
