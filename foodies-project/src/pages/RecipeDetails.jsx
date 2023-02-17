@@ -9,12 +9,14 @@ import Col from 'react-bootstrap/Col';
 import './RecipeDetails.css'
 import cartPlusFill from '../images/cart-plus-fill.svg'
 import check2 from '../images/check2.svg'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip'
 
 function RecipeDetails() {
   const params = useParams();
   const [recipe, setRecipe] = useState(null);
-  const [checked, setChecked] = useState(false)
-  const [ingredientList, setIngredientList] = useState([])
+  // const [checked, setChecked] = useState(false)
+  // const [ingredientList, setIngredientList] = useState([])
 
   const { shoppingList, addToShoppingList } = useContext(ShoppingListContext)
   const [isButtonClicked, setIsButtonClicked] = useState({});
@@ -138,30 +140,28 @@ useEffect(() => {
               {section.components.map((component)=>(
                   <>
                   <div style={{display:'flex', padding:'8px'}}>
+                <OverlayTrigger
 
+                  key={component}
+                  overlay={<Tooltip>Add to cart</Tooltip>}
+                >
                   <div style={{display: "flex", alignItems: "center"}}>
-                  <img
-                      src={cartPlusFill}
-                      onClick={() => {
-                        addToShoppingList(component.raw_text)
-                        localStorage.setItem("shoppingList", JSON.stringify(shoppingList))
-                        setIsButtonClicked({...isButtonClicked, [component.raw_text]: !isButtonClicked[component.raw_text]})
-                      }}
-                      style={{
-                        width: "24px",
-                        height: "24px",
-                        cursor: "pointer",
-                        filter: isButtonClicked[component.raw_text] ? "invert(33%) sepia(77%) saturate(1726%) hue-rotate(96deg) brightness(111%) contrast(115%)" : "none"
-                      }}
-                    />
-                    {/* {isButtonClicked[component.raw_text] && (
-                      <img
-                        src={check2}
-                        style={{ width: "24px", height: "24px", marginLeft: "5px" }}
+                    <img
+                        src={cartPlusFill}
+                        onClick={() => {
+                          addToShoppingList(component.raw_text)
+                          localStorage.setItem("shoppingList", JSON.stringify(shoppingList))
+                          setIsButtonClicked({...isButtonClicked, [component.raw_text]: !isButtonClicked[component.raw_text]})
+                        }}
+                        style={{
+                          width: "24px",
+                          height: "24px",
+                          cursor: "pointer",
+                          filter: isButtonClicked[component.raw_text] ? "invert(33%) sepia(77%) saturate(1726%) hue-rotate(96deg) brightness(111%) contrast(115%)" : "none"
+                        }}
                       />
-                    )} */}
-                    </div>
-
+                      </div>
+                  </OverlayTrigger>  
             
                     <p style={{margin:'10px'}}>{component.raw_text}</p>
                   </div>
