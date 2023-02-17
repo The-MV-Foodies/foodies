@@ -31,15 +31,15 @@ function RecipeCard({recipes, recipe}) {
 return (
     <>
     <div className="cards">
-        <Card style={{ width: '18rem' }} className='mx-auto'>
+        <Card style={{ width: '25rem' }} className='mx-auto'>
           <Card.Img
-          width='286'
-          height='286'
+           width='200'
+           height='400'
           variant='top'
           src={thumbnail_url}
           />
           <Card.Title className='d-flex justify-content-center'>
-          <Link to={`/${id}`}>{name}</Link>
+          <Link to={`/${id}`} style={{ textDecoration: 'none' }}>{name}</Link>
           </Card.Title>
           
         </Card>
