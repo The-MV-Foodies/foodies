@@ -6,6 +6,9 @@ import { Form, Button, FormCheck, Card } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './RecipeDetails.css'
+import cartPlusFill from '../images/cart-plus-fill.svg'
+import check2 from '../images/check2.svg'
 
 function RecipeDetails() {
   const params = useParams();
@@ -40,6 +43,7 @@ useEffect(() => {
   }
 
 
+
   return (
     <div>
     <Container style={{
@@ -62,9 +66,13 @@ useEffect(() => {
               height: '100%',
               flexDirection: 'column'
             }}>
-              <Card.Title style={{textAlign: 'center'}}><h1>{recipe.name}</h1></Card.Title>
+              <Card.Title style={{textAlign: 'center'}}>
+              <h1 className="recipeTitle">{recipe.name}</h1>
+              </Card.Title>
               <Card.Text style={{textAlign: 'center'}}>
                 {recipe.description}
+                <p className="cookTime">Cook Time: {recipe.total_time_minutes} minutes</p>
+                <p className='serving'>Servings: {recipe.num_servings}</p>
                 {recipe.credits && recipe.credits.map(credit =>(
                   <p> by: {credit.name}</p>
                 ))}
@@ -84,16 +92,14 @@ useEffect(() => {
     <Container>
       <Row>
         <Col  sm={6} md={8} style={{flex: 1.5}}>
-          <h4 style={{paddingTop:'18px'}}>Servings: {recipe.num_servings}</h4>
-          <h4>Cook Time: {recipe.total_time_minutes} minutes</h4>
-          <p>Instructions:</p>
-          <ul>
+          <p className="display-5">Instructions:</p>
+          <ol>
             {recipe.instructions.map((instruction) => (
-              <li key={instruction.display_text}>
+              <li className="instructions" key={instruction.display_text}>
                 <span>{instruction.display_text}</span>
               </li>
             ))}
-          </ul>
+          </ol>
           <table>
             <thead>
                 <tr>
@@ -125,20 +131,38 @@ useEffect(() => {
         </table>
         </Col>
         <Col sm={6} md={16} style={{flex: 1}}>
-        <p style={{padding:'18px'}}>Ingredients:</p>
+        <p className="display-5" style={{padding:'18px'}}>Ingredients:</p>
           <ul>
             {recipe.sections.map((section) =>{ 
               return<>
               {section.components.map((component)=>(
                   <>
                   <div style={{display:'flex', padding:'8px'}}>
-                    <Button onClick={() => {
-                      addToShoppingList(component.raw_text)
-                      localStorage.setItem("shoppingList", JSON.stringify(shoppingList))
-                      setIsButtonClicked({...isButtonClicked, [component.raw_text]: !isButtonClicked[component.raw_text]})
-                    }} style={isButtonClicked[component.raw_text] ? {backgroundColor: 'transparent', border:'none'} : {}}>
-                    {isButtonClicked[component.raw_text] ? <span style={{color: 'green', fontSize:'24px'}}>&#x2713;</span> : '+'}
-                    </Button>  
+
+                  <div style={{display: "flex", alignItems: "center"}}>
+                  <img
+                      src={cartPlusFill}
+                      onClick={() => {
+                        addToShoppingList(component.raw_text)
+                        localStorage.setItem("shoppingList", JSON.stringify(shoppingList))
+                        setIsButtonClicked({...isButtonClicked, [component.raw_text]: !isButtonClicked[component.raw_text]})
+                      }}
+                      style={{
+                        width: "24px",
+                        height: "24px",
+                        cursor: "pointer",
+                        filter: isButtonClicked[component.raw_text] ? "invert(33%) sepia(77%) saturate(1726%) hue-rotate(96deg) brightness(111%) contrast(115%)" : "none"
+                      }}
+                    />
+                    {/* {isButtonClicked[component.raw_text] && (
+                      <img
+                        src={check2}
+                        style={{ width: "24px", height: "24px", marginLeft: "5px" }}
+                      />
+                    )} */}
+                    </div>
+
+            
                     <p style={{margin:'10px'}}>{component.raw_text}</p>
                   </div>
                   </> 
