@@ -17,7 +17,7 @@ function Navigation() {
 
         <Nav className='me-auto'>
           <Nav.Link as="div">
-            <NavLink to='/'>All Recipes</NavLink>
+            <NavLink to='/'>A Recipes</NavLink>
             <NavLink to='/shoppingList'>My Shopping List</NavLink>
           </Nav.Link>
         </Nav>

@@ -40,7 +40,7 @@ return (
           />
           <Card.Title className='d-flex justify-content-center'>
           <Link to={`/${id}`}>{name}</Link>
-          </Card.Title>
+          </Card.Titles>
           
         </Card>
     </div>
