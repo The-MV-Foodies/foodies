@@ -94,7 +94,7 @@ function ShoppingList() {
                       <img
                         onClick={() => deleteItem(listItem)}
                         src={bagX}
-                        alt="image of shopping bag with an x in the middle"
+                        alt="image of shopping bag with an 'x' in the middle"
                       />
                     </OverlayTrigger>
                   </div>
