@@ -6,6 +6,7 @@ import { RecipeCard } from './components/RecipeCard';
 import { Navigation } from './components/Navigation';
 import { RecipeDetails } from './pages/RecipeDetails';
 import { ShoppingList } from './pages/ShoppingList';
+import { Footer } from './components/Footer';
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -48,6 +49,7 @@ function App() {
             <Route path='/shoppingList' element={<ShoppingList />} />
             {/* <Route path='/card' element={<RecipeCard recipes={recipes}/>} /> */}
           </Routes>
+          <Footer />
          </div>
         </BrowserRouter>
   

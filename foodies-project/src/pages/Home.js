@@ -20,8 +20,8 @@ function Home({ recipes }) {
     return (
       <>
       <h1 style={{textAlign: 'center'}}>Foodies</h1>
-        <Container>
-        <Row className='mb-4'>
+        <Container className='mb-4 pb-5' >
+        <Row className='mb-3'>
           <Col sm='8' md='6' className='mx-auto'>
             <InputGroup>
               <InputGroup.Text id='search'>Search</InputGroup.Text>
