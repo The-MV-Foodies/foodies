@@ -22,18 +22,18 @@ return (
           style={{ maxHeight: '100px' }}
           navbarScroll
         >
-          <Nav.Link href="#action1">Home</Nav.Link>
-          <Nav.Link href="#action2">All recipes</Nav.Link>
-          <NavDropdown title="Shopping List" id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3"></NavDropdown.Item>
-            <NavDropdown.Item href="#action4">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/shoppinglist">Shopping List</Nav.Link>
+           {/* <NavDropdown title="Shopping List" id="navbarScrollingDropdown"> */}
+            {/* <NavDropdown.Item href="#action3"></NavDropdown.Item>
+            <NavDropdown.Item href="#action4"> 
               
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action5">
               Something else here
             </NavDropdown.Item>
-          </NavDropdown>
+          </NavDropdown> */}
           <Nav.Link href="#" disabled>
             
           </Nav.Link>
