@@ -8,7 +8,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './RecipeDetails.css'
 import cartPlusFill from '../images/cart-plus-fill.svg'
-import check2 from '../images/check2.svg'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip'
 
