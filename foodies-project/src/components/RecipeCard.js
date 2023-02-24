@@ -33,13 +33,13 @@ return (
     <div className="cards">
         <Card style={{ width: '25rem' }} className='mx-auto'>
           <Card.Img
-           width='200'
-           height='400'
+           width='250'
+           height='350'
           variant='top'
           src={thumbnail_url}
           />
           <Card.Title className='d-flex justify-content-center'>
-          <Link to={`/${id}`} style={{ textDecoration: 'none' }}>{name}</Link>
+          <Link to={`/${id}`} style={{ textDecoration: 'none', color:'black' }}>{name}</Link>
           </Card.Title>
           
         </Card>
