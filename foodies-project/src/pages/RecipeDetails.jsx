@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { api_key } from '../api_key';
 import { ShoppingListContext } from '../ShoppingListProvider';
-import { Form, Button, FormCheck, Card } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,9 +15,6 @@ import Tooltip from 'react-bootstrap/Tooltip'
 function RecipeDetails() {
   const params = useParams();
   const [recipe, setRecipe] = useState(null);
-  // const [checked, setChecked] = useState(false)
-  // const [ingredientList, setIngredientList] = useState([])
-
   const { shoppingList, addToShoppingList } = useContext(ShoppingListContext)
   const [isButtonClicked, setIsButtonClicked] = useState({});
 
@@ -93,7 +90,7 @@ useEffect(() => {
     </Container>
     <Container>
       <Row>
-        <Col  sm={6} md={8} style={{flex: 1.5}}>
+        <Col className="instructions" sm={6} md={8} style={{flex: 1.5}}>
           <p className="display-5">Instructions:</p>
           <ol>
             {recipe.instructions.map((instruction) => (
@@ -105,7 +102,7 @@ useEffect(() => {
           <table>
             <thead>
                 <tr>
-                    <th>Nutrition Facts</th>
+                    <th className="display-6" >Nutrition Facts</th>
                 </tr>
             </thead>
             <tbody>
