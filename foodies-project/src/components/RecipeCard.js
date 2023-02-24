@@ -39,7 +39,7 @@ return (
           src={thumbnail_url}
           />
           <Card.Title className='d-flex justify-content-center'>
-          <Link to={`/${id}`} style={{ textDecoration: 'none', color:'black', padding: '15px' }}>{name}</Link>
+          <Link to={`/${id}`} style={{ textDecoration: 'none', color:'black', padding: '20px' }}>{name}</Link>
           </Card.Title>
           
         </Card>
