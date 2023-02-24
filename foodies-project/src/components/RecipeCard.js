@@ -31,7 +31,7 @@ function RecipeCard({recipes, recipe}) {
 return (
     <>
     <div className="cards">
-        <Card style={{ width: '25rem' }} className='mx-auto'>
+        <Card style={{ width: '25rem', padding: '30px' }} className='mx-auto' >
           <Card.Img
            width='250'
            height='350'
@@ -39,7 +39,7 @@ return (
           src={thumbnail_url}
           />
           <Card.Title className='d-flex justify-content-center'>
-          <Link to={`/${id}`} style={{ textDecoration: 'none', color:'black' }}>{name}</Link>
+          <Link to={`/${id}`} style={{ textDecoration: 'none', color:'black', padding: '15px' }}>{name}</Link>
           </Card.Title>
           
         </Card>
