@@ -12,9 +12,7 @@ import {
 } from 'react-bootstrap';
 
 function ShoppingList() {
-  const { shoppingList, removeFromShoppingList } = useContext(
-    ShoppingListContext
-  );
+  const { removeFromShoppingList } = useContext(ShoppingListContext);
 
   const [shoppedFor, setShoppedFor] = useState([]);
 
@@ -74,7 +72,7 @@ function ShoppingList() {
                           deleteItem(listItem);
                         }}
                         src={bagPlus}
-                        alt=""
+                        alt="image of shopping bag with a plus sign in the middle"
                       />
                     </OverlayTrigger>
                   </div>
@@ -96,7 +94,7 @@ function ShoppingList() {
                       <img
                         onClick={() => deleteItem(listItem)}
                         src={bagX}
-                        alt=""
+                        alt="image of shopping bag with an x in the middle"
                       />
                     </OverlayTrigger>
                   </div>
