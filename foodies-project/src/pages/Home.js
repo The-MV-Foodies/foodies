@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import FormControl from 'react-bootstrap/FormControl';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { RecipeCard } from "../components/RecipeCard";
+import home2img from "../images/home2img.png";
 
 function Home({ recipes }) {
   const [filteredRecipe, setFilteredRecipe] = useState([]);
@@ -19,7 +20,10 @@ function Home({ recipes }) {
   }, [recipes, search]);
     return (
       <>
-      <h1 style={{textAlign: 'center'}}>Foodies</h1>
+      {/* <h1 style={{textAlign: 'center'}}>Foodies</h1> */}
+      <div className= "text-center">
+      <img src={home2img} alt="foodies logo for navbar" style ={{height:"300px", weight:"300px"}}/>
+      </div>
         <Container>
         <Row className='mb-4'>
           <Col sm='8' md='6' className='mx-auto'>
@@ -41,15 +45,6 @@ function Home({ recipes }) {
               <RecipeCard recipe={singleRecipe} url={singleRecipe.thumbnail_url} name={singleRecipe.name} id={singleRecipe.id} />
               </Col>
             ))}
-
-            {/* {filteredRecipe.map((singleRecipe) => (
-              <RecipeCard url={singleRecipe.thumbnail_url} name={singleRecipe.name} recipes={recipes} id={singleRecipe.id}/>
-            ))} */}
-          {/* {filteredRecipe.map((singleRecipe) => (
-            <Col key={singleRecipe.name}>
-              <RecipeCard url={singleRecipe.thumbnail_url} name={singleRecipe.name} recipes={recipes} id={singleRecipe.id}/>
-            </Col>
-          ))} */}
           </Row>
           </Container>
 
