@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Image from 'react-bootstrap/Image';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import navbarimg from "../images/navbarimg.png";
 
 
 function Navigation() {   
@@ -14,7 +15,7 @@ function Navigation() {
 return (
   <Navbar bg="light" expand="lg">
     <Container fluid>
-      <Navbar.Brand href="#">Foodies</Navbar.Brand>
+      <img src={navbarimg} alt="foodies logo for navbar" style ={{height:"85px", weight:"85px"}}></img>
       <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse id="navbarScroll">
         <Nav
@@ -23,9 +24,9 @@ return (
           navbarScroll
         >
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/shoppinglist">Shopping List</Nav.Link>  
+          <Nav.Link href="/shoppingList">Shopping List</Nav.Link>
+          </Nav.Link>
         </Nav>
-        
       </Navbar.Collapse>
     </Container>
   </Navbar>
