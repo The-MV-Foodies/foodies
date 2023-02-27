@@ -25,7 +25,6 @@ return (
         >
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/shoppingList">Shopping List</Nav.Link>
-          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Container>
