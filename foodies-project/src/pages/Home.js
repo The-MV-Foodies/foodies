@@ -20,7 +20,6 @@ function Home({ recipes }) {
   }, [recipes, search]);
     return (
       <>
-      {/* <h1 style={{textAlign: 'center'}}>Foodies</h1> */}
       <div className= "text-center">
       <img src={home2img} alt="foodies logo for navbar" style ={{height:"300px", weight:"300px"}}/>
       </div>
