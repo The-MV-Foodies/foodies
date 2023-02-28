@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { api_key } from '../api_key';
 
 function RecipeCard({recipes, recipe}) {
-    const [singleRecipe, setSingleRecipe] = useState(null);
     const {name, thumbnail_url, id} = recipe;
 
 return (

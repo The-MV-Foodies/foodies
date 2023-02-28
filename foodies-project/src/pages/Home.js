@@ -37,7 +37,7 @@ function Home({ recipes }) {
             </InputGroup>
           </Col>
         </Row>
-          <Row className='g-4'>
+          <Row className='g-4 pt-5'>
 
             {filteredRecipe.map((singleRecipe) => (
               <Col key={singleRecipe.name}>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { api_key } from './api_key';
 import { Home } from './pages/Home';
-import { RecipeCard } from './components/RecipeCard';
 import { Navigation } from './components/Navigation';
 import { RecipeDetails } from './pages/RecipeDetails';
 import { ShoppingList } from './pages/ShoppingList';
